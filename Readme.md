@@ -31,11 +31,11 @@ Next, activate the virtualenv and install SCons with
 
 Install the requirements with `pip install -r requirements.txt`.
 
-This will install PyYAML (required to read the build configuration file,
-SConsfile.yml and SConsfile.production.yml), and yuicompressor,
+This will install **PyYAML** (required to read the build configuration file,
+SConsfile.yml and SConsfile.production.yml), and **yuicompressor**,
 a required python module by SCons tool `cssmin` and `jsmin`. These
-tools' module can be found in site_scons/site_tools named cssmin.py
-and jsmin.py.
+tools' module can be found in site_scons/site_tools named **cssmin.py**
+and **jsmin.py**, the file names are the same as the tool names.
 
 The current `copy` and `concat` SCons tools doesn't support Windows OS,
 yet, they uses **cp** and **cat** binary found in the system, tipical of
@@ -46,14 +46,14 @@ to replace those binaries, I'll try to fix them later.
 Oh, Scons tools is equivalent to grunt.js plugins, they're extensions,
 sort of.
 
-And now for the real thing, provided that you have `scons` in the `bin/`
+And now for the real thing, provided that you have **scons** in the **bin/**
 directory, run the following: `scons` and `scons --stage=production`.
 
-`scons` read configuration from `SConsfile.yml` in the root directory,
+`scons` read configuration from **SConsfile.yml** in the root directory,
 it is equivalent to `scons --stage=default`, the build process' temporary
-files can be found in `site_scons/BUILD/default`.
+files can be found in **BUILD/default**.
 Likewise with `scons --stage=production`, except this one reads from
-`SConsfile.production.yml`, you can replace "production" with any staging
+**SConsfile.production.yml**, you can replace "production" with any staging
 workflow name you can think of.
 
 You can build for specific targets, we have `scons concat` to process files

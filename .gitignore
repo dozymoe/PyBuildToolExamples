@@ -1,3 +1,4 @@
+/BUILD/
 /bin/
 /htdocs/
 /include/
@@ -11,7 +12,6 @@
 /lib32
 /lib64
 /npm-debug.log
-/site_scons/BUILD/
 
 *.pyc
 *.swp

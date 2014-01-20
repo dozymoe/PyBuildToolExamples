@@ -1,7 +1,7 @@
 from os import environ, path
 from yaml import safe_load as yaml_load
 
-Import('env ROOT_DIR')
+Import('env ROOT_DIR BUILD_DIR')
 
 
 # support different build stages (development, production, etc.).
@@ -17,7 +17,7 @@ env['ENV']['PATH'] = environ['PATH']
 
 
 # setup sandbox for temporary build files.
-prefix = path.join('BUILD', env['ENV']['STAGE'])
+prefix = path.join(BUILD_DIR, env['ENV']['STAGE'])
 env.VariantDir(prefix, ROOT_DIR)
 
 
