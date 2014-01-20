@@ -22,7 +22,7 @@ env.VariantDir(prefix, ROOT_DIR)
 
 
 # read build-configuration (files to process).
-config_file = 'SConstruct'
+config_file = 'SConsfile'
 if env['ENV']['STAGE'] != 'default':
     config_file += '.%s' % env['ENV']['STAGE']
 config_file += '.yml'
@@ -53,14 +53,14 @@ for tool_name in config:
 
             # files are either relative to build dir, or relative
             # to ROOT_DIR.
-            # ROOT_DIR is where SConstruct.yml lies.
-            if not group_options.get('_target_abspath_', False):
+            # ROOT_DIR is where SConsfile.yml lies.
+            if group_options.get('_target_sandboxed_', True):
                 item['dest'] = [path.join(prefix, dest)
                                 for dest in item['dest']]
             else:
                 item['dest'] = [path.join(ROOT_DIR, dest)
                                 for dest in item['dest']]
-            if not group_options.get('_source_abspath_', False):
+            if group_options.get('_source_sandboxed_', True):
                 item['src'] = [path.join(prefix, src)
                                for src in item['src']]
             else:
@@ -68,7 +68,7 @@ for tool_name in config:
                                for src in item['src']]
 
             action = tool(item['dest'], item['src'],
-                          ACTIONCFG=Value(group_options))
+                          TOOLCFG=Value(group_options))
             group_actions.append(action)
             tool_actions.append(action)
 
