@@ -1,0 +1,54 @@
+concat:
+    group_main_css:
+        options:
+            _source_abspath_: True
+        files:
+            -
+                src:
+                    - src/css/heading.css
+                    - src/css/default.css
+                dest: css/style.css
+    group_main_js:
+        options:
+            _source_abspath_: True
+        files:
+            -
+                src:
+                    - src/javascript/underscore.js
+                    - src/javascript/default.js
+                dest: javascript/script.js
+copy:
+    group_main_css:
+        depends:
+            - 'cssmin:group_main_css'
+        options:
+            _target_abspath_: True
+        files:
+            -
+                src: css/style-min.css
+                dest: htdocs/css/style.css
+    group_main_js:
+        depends:
+            - 'jsmin:group_main_js'
+        options:
+            _target_abspath_: True
+        files:
+            -
+                src: javascript/script-min.js
+                dest: htdocs/js/script.js
+cssmin:
+    group_main_css:
+        depends:
+            - 'concat:group_main_css'
+        files:
+            -
+                src: css/style.css
+                dest: css/style-min.css
+jsmin:
+    group_main_js:
+        depends:
+            - 'concat:group_main_js'
+        files:
+            -
+                src: javascript/script.js
+                dest: javascript/script-min.js

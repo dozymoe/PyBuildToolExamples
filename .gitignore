@@ -1,0 +1,17 @@
+/bin/
+/htdocs/
+/include/
+/lib/
+/lib32/
+/lib64/
+/man/
+/node_modules/
+
+/.sconsign.dblite
+/lib32
+/lib64
+/npm-debug.log
+/site_scons/BUILD/
+
+*.pyc
+*.swp

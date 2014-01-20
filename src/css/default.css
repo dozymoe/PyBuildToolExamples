@@ -1,0 +1,10 @@
+/**
+ * Examples of css.
+ */
+
+body {
+    font: 1em/1.5 sans-serif;
+}
+p {
+    margin: 1.5em 0;
+}

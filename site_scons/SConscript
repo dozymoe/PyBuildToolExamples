@@ -1,0 +1,79 @@
+from os import environ, path
+from yaml import safe_load as yaml_load
+
+Import('env ROOT_DIR')
+
+
+# support different build stages (development, production, etc.).
+AddOption('--stage', dest='stage', type='string',
+          action='store', default='default',
+          help='Build workflow stages, for example development' \
+               ' or production')
+env['ENV']['STAGE'] = GetOption('stage')
+
+
+# populate shell environment variable $PATH with external $PATH.
+env['ENV']['PATH'] = environ['PATH']
+
+
+# setup sandbox for temporary build files.
+prefix = path.join('BUILD', env['ENV']['STAGE'])
+env.VariantDir(prefix, ROOT_DIR)
+
+
+# read build-configuration (files to process).
+config_file = 'SConstruct'
+if env['ENV']['STAGE'] != 'default':
+    config_file += '.%s' % env['ENV']['STAGE']
+config_file += '.yml'
+config = yaml_load(open(path.join(ROOT_DIR, config_file)))
+                                  
+
+# main function, process build config into tasks.
+for tool_name in config:
+    env.Tool(tool_name)
+
+    tool = getattr(env, tool_name)
+    tool_actions = []
+
+    for group_name in config[tool_name]:
+        group = config[tool_name][group_name]
+
+        group_actions = []
+        group_alias = '%s:%s' % (tool_name, group_name)
+        group_dependencies = group.get('depends', [])
+        group_options = group.get('options', {})
+
+        for item in group['files']:
+            # reconstruct files into list
+            if not isinstance(item['dest'], list):
+                item['dest'] = [item['dest']]
+            if not isinstance(item['src'], list):
+                item['src'] = [item['src']]
+
+            # files are either relative to build dir, or relative
+            # to ROOT_DIR.
+            # ROOT_DIR is where SConstruct.yml lies.
+            if not group_options.get('_target_abspath_', False):
+                item['dest'] = [path.join(prefix, dest)
+                                for dest in item['dest']]
+            else:
+                item['dest'] = [path.join(ROOT_DIR, dest)
+                                for dest in item['dest']]
+            if not group_options.get('_source_abspath_', False):
+                item['src'] = [path.join(prefix, src)
+                               for src in item['src']]
+            else:
+                item['src'] = [path.join(ROOT_DIR, src)
+                               for src in item['src']]
+
+            action = tool(item['dest'], item['src'],
+                          ACTIONCFG=Value(group_options))
+            group_actions.append(action)
+            tool_actions.append(action)
+
+        env.Alias(group_alias, group_actions)
+        if 'depends' in group:
+            env.Depends(group_alias,
+                        [Alias(depend) for depend in group_dependencies])
+    env.Alias(tool_name, tool_actions)
