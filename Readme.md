@@ -4,7 +4,7 @@ PyBuildTool examples
 Summary
 =======
 
-This is example implementation of [1](PyBuildTool)
+This is example implementation of [PyBuildTool][1]
 
 
 Instruction
@@ -17,7 +17,7 @@ There's also a package.json, which will install jshint, which actually
 won't be needed, but I kept it for fun, haha.
 
 So first you need to create virtualenv on top of this example directory.
-You'd need python2, since [2](SCons) which this project is build on top
+You'd need python2, since [SCons][2] which this project is build on top
 of, does not support python3, currently.
 
 Next, activate the virtualenv and install SCons with
