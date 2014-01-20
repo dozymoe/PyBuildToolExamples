@@ -1,7 +1,7 @@
 concat:
     group_main_css:
         options:
-            _source_sandboxed_: False
+            _source_sandboxed_: false
         files:
             -
                 src:
@@ -10,7 +10,7 @@ concat:
                 dest: css/style.css
     group_main_js:
         options:
-            _source_sandboxed_: False
+            _source_sandboxed_: false
         files:
             -
                 src:
@@ -20,18 +20,18 @@ concat:
 copy:
     group_main_css:
         depends:
-            - 'concat:group_main_css'
+            - concat:group_main_css
         options:
-            _target_sandboxed_: False
+            _target_sandboxed_: false
         files:
             -
                 src: css/style.css
                 dest: htdocs/css/style.css
     group_main_js:
         depends:
-            - 'concat:group_main_js'
+            - concat:group_main_js
         options:
-            _target_sandboxed_: False
+            _target_sandboxed_: false
         files:
             -
                 src: javascript/script.js
