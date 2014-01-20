@@ -1,8 +1,8 @@
 PyBuildTool examples
---------------------
+====================
 
 Summary
-=======
+-------
 
 This is example implementation of [PyBuildTool][1]
 
@@ -14,7 +14,7 @@ python modules inside site_scons/site_tools.
 
 
 Instruction
-===========
+-----------
 
 If you haven't notice, there's a requirements.txt file in the root
 directory, this example is meant to be a virtualenv (a python sandbox).
