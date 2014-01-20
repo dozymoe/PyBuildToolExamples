@@ -63,6 +63,10 @@ that will be build by the tool `concat`. Or more specifically
 And, that's it.
 
 
+PS: Fun fact, `scons` is actually reading build configuration in **SConsfile.py**,
+    we support two file types now, py and yml, with py as the default because
+    its content may be dynamic.
+
 
 [1]: http://github.com/dozymoe/PyBuildTool
 [2]: http://www.scons.org

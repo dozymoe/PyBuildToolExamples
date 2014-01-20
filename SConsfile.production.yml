@@ -1,7 +1,7 @@
 concat:
     group_main_css:
         options:
-            _source_abspath_: True
+            _source_abspath_: true
         files:
             -
                 src:
@@ -10,7 +10,7 @@ concat:
                 dest: css/style.css
     group_main_js:
         options:
-            _source_abspath_: True
+            _source_abspath_: true
         files:
             -
                 src:
@@ -22,7 +22,7 @@ copy:
         depends:
             - 'cssmin:group_main_css'
         options:
-            _target_abspath_: True
+            _target_abspath_: true
         files:
             -
                 src: css/style-min.css
@@ -31,7 +31,7 @@ copy:
         depends:
             - 'jsmin:group_main_js'
         options:
-            _target_abspath_: True
+            _target_abspath_: true
         files:
             -
                 src: javascript/script-min.js
