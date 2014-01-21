@@ -1,5 +1,7 @@
 concat:
     group_main_css:
+        options:
+            _source_sandboxed_: false
         files:
             -
                 src:
@@ -7,6 +9,8 @@ concat:
                     - src/css/default.css
                 dest: css/style.css
     group_main_js:
+        options:
+            _source_sandboxed_: false
         files:
             -
                 src:
@@ -15,8 +19,6 @@ concat:
                 dest: javascript/script.js
 copy:
     group_main_css:
-        depends:
-            - 'cssmin:group_main_css'
         options:
             _target_sandboxed_: false
         files:
@@ -24,8 +26,6 @@ copy:
                 src: css/style-min.css
                 dest: htdocs/css/style.css
     group_main_js:
-        depends:
-            - 'jsmin:group_main_js'
         options:
             _target_sandboxed_: false
         files:
@@ -34,16 +34,12 @@ copy:
                 dest: htdocs/js/script.js
 cssmin:
     group_main_css:
-        depends:
-            - 'concat:group_main_css'
         files:
             -
                 src: css/style.css
                 dest: css/style-min.css
 jsmin:
     group_main_js:
-        depends:
-            - 'concat:group_main_js'
         files:
             -
                 src: javascript/script.js
