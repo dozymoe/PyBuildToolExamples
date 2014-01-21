@@ -1,7 +1,6 @@
+from PyBuildTool.tools.warnings import ThereCanBeOnlyOne
 from SCons.Builder import Builder
 from SCons.Errors import StopError
-
-from site_scons.site_tools.warnings import ThereCanBeOnlyOne
 
 
 def cssmin_generator(source, target, env, for_signature):

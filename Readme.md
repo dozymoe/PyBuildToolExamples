@@ -6,11 +6,11 @@ Summary
 
 This is example implementation of [PyBuildTool][1]
 
-The file users need to focus on is just the SConsfile.yml and
+The files users need to focus on is just the SConsfile.yml and
 Sconsfile.production.yml
 
 If you want to build your own tools/extensions, take a look at the
-python modules inside site_scons/site_tools.
+python modules inside PyBuildTool/tools.
 
 
 Instruction
@@ -34,14 +34,8 @@ Install the requirements with `pip install -r requirements.txt`.
 This will install **PyYAML** (required to read the build configuration file,
 SConsfile.yml and SConsfile.production.yml), and **yuicompressor**,
 a required python module by SCons tool `cssmin` and `jsmin`. These
-tools' module can be found in site_scons/site_tools named **cssmin.py**
+tools' module can be found in **PyBuildTool/tools** named **cssmin.py**
 and **jsmin.py**, the file names are the same as the tool names.
-
-The current `copy` and `concat` SCons tools doesn't support Windows OS,
-yet, they uses **cp** and **cat** binary found in the system, tipical of
-\*NIX installation.
-SCons itself support Windows, there're builtin functions that can be used
-to replace those binaries, I'll try to fix them later.
 
 Oh, Scons tools is equivalent to grunt.js plugins, they're extensions,
 sort of.

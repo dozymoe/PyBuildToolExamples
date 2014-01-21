@@ -1,5 +1,5 @@
 from copy import deepcopy
-from os import environ, path
+from os import environ, getcwd, path
 
 
 def get_config_filename(root, stage, filetype):
@@ -44,6 +44,12 @@ AddOption('--config-filetype', dest='filetype', type='string',
 # populate scons' shell-environment-variable $PATH with system's $PATH.
 for p in environ['PATH'].split(':'):
     env.AppendENVPath('PATH', p)
+
+
+# tell SCons where to find our tools.
+toolpath = env.get('toolpath', [])
+toolpath.append(path.join(getcwd(), 'tools'))
+env['toolpath'] = toolpath
 
 
 # setup sandbox for temporary build files.
