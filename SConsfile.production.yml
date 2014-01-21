@@ -1,7 +1,5 @@
 concat:
     group_main_css:
-        options:
-            _source_sandboxed_: false
         files:
             -
                 src:
@@ -9,8 +7,6 @@ concat:
                     - src/css/default.css
                 dest: css/style.css
     group_main_js:
-        options:
-            _source_sandboxed_: false
         files:
             -
                 src:

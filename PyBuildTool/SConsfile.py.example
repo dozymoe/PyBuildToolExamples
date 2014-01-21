@@ -49,7 +49,4 @@ build_config = {
 
 
 def init(env):
-    """ This function will be called by PyBuildTool to let you setup the
-        content of `build_config` variable above """
-
     pass

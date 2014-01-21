@@ -37,7 +37,7 @@ a required python module by SCons tool `cssmin` and `jsmin`. These
 tools' module can be found in **PyBuildTool/tools** named **cssmin.py**
 and **jsmin.py**, the file names are the same as the tool names.
 
-Oh, Scons tools is equivalent to grunt.js plugins, they're extensions,
+Oh, Scons tools is equivalent to [grunt.js][3] plugins, they're extensions,
 sort of.
 
 And now for the real thing, provided that you have **scons** in the **bin/**
@@ -64,3 +64,4 @@ PS: Fun fact, `scons` is actually reading build configuration in **SConsfile.py*
 
 [1]: http://github.com/dozymoe/PyBuildTool
 [2]: http://www.scons.org
+[3]: http://gruntjs.com

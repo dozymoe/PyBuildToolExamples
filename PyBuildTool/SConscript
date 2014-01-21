@@ -112,12 +112,6 @@ for tool_name in config:
             else:
                 item['dest'] = [path.join(ROOT_DIR, dest)
                                 for dest in item['dest']]
-            if group_options.get('_source_sandboxed_', True):
-                item['src'] = [path.join(prefix, src)
-                               for src in item['src']]
-            else:
-                item['src'] = [path.join(ROOT_DIR, src)
-                               for src in item['src']]
 
             action = tool(item['dest'], item['src'],
                           TOOLCFG=Value(group_options))
